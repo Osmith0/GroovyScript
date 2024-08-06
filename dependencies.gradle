@@ -35,7 +35,7 @@ final def mod_dependencies = [
         'shadowfacts-forgelin-248453:2785465'                 : [project.debug_alchemistry, project.debug_industrial_foregoing],
         'ae2-extended-life-570458:4553942'                    : [project.debug_applied_energistics_2, project.debug_lazy_ae2],
         'arcane-archives-311357:3057332'                      : [project.debug_arcane_archives],
-        'guidebook-253874:2989594'                            : [project.debug_arcane_archives],
+        'guidebook-253874:2989594'                            : [project.debug_arcane_archives, project.debug_rockhounding],
         'mystical_lib-277064:3483816'                         : [project.debug_arcane_archives, project.debug_roots],
         'astralsorcery-sorcery-241721:3044416'                : [project.debug_astral],
         'baubles-227083:2518667'                              : [project.debug_astral, project.debug_botania, project.debug_botanic_additions, project.debug_essentialcraft_4, project.debug_extra_botany, project.debug_thaum],
@@ -92,6 +92,8 @@ final def mod_dependencies = [
         'mystical_world-282940:3460961'                       : [project.debug_roots],
         'patchouli-306770:3162874'                            : [project.debug_roots, project.debug_natures_aura, project.debug_prodigytech],
         'prodigytech-297414:2769520'                          : [project.debug_prodigytech],
+        'rockhounding-mod-chemistry-251974:5317870'           : [project.debug_rockhounding],
+        'rockhounding-mod-core-271298:4790040'                : [project.debug_rockhounding],
         'roots-246183:3905074'                                : [project.debug_roots],
         'rustic-256141:3107974'                               : [project.debug_rustic],
         'thaumcraft-223628:2629023'                           : [project.debug_thaum],
@@ -129,6 +131,11 @@ dependencies {
         if (it.value.any { it.toBoolean() }) {
             runtimeOnly mod
         }
+    }
+
+    if (project.debug_rockhounding.toBoolean()) {
+        compileOnly(files("libs/rockhounding_core-1.12.2-3.30.jar"))
+        compileOnly(files("libs/rockhounding_chemistry-1.12.2-3.69-hotfix.jar"))
     }
 
     if (project.debug_thaum.toBoolean()) {
